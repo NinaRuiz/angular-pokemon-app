@@ -1,0 +1,24 @@
+<div *ngIf="pokemonModel" class="container">
+    <div class="card">
+      <div class="card-header-actions">
+        <button class="icon-button" routerLink="/pokemon">
+          <img class="icon" src="./assets/icons/iconfinder_cross_4115230.png">
+        </button>
+      </div>
+      <div class="card-header-image">
+        <img class="pkmn-image" *ngIf="pokemonModel?.name" src="{{'https://img.pokemondb.net/sprites/black-white/anim/normal/' + pokemonModel?.name + '.gif'}}">
+      </div>
+      <div class="card-content">
+        <h5>{{this.pokemonModel?.name | titlecase}}</h5>
+      </div>
+      <div class="card-description">
+        <p>ID: {{this.pokemonModel?.id}}</p>
+        <p>Type: {{this.pokemonModel?.types[0].type.name | titlecase}}</p>
+        <p>Height: {{this.pokemonModel?.height}}</p>
+        <p>Abilities:</p>
+        <ul>
+          <li *ngFor="let pokemonAbilities of this.pokemonModel?.abilities">{{pokemonAbilities?.ability?.name | titlecase}}</li>
+        </ul>
+      </div>
+    </div>
+</div>
