@@ -1,0 +1,33 @@
+<div class="header">
+  <div class="header-title">
+    <img src="https://dinakhouri.github.io/Pokemon/assets/images/title.png" class="title-image">
+  </div>
+  <div class="header-subtitle">
+    <h4>Generation I</h4>
+    <p>{{this.pokemonList.length}} pokemon</p>
+    <div class="input-container">
+      <label class="input-label">
+        Search by Name:
+      </label>
+      <input (keydown.enter)="onSearch()" [(ngModel)]="this.searchName" name="searchName" class="input">
+      <button (click)="onSearch()" class="icon-button">
+        <img class="icon" src="https://img.icons8.com/search">
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col" *ngFor="let pokemon of this.pokemonList">
+    <div class="card" routerLink="/pokemon/{{pokemon.name}}" (mouseover)="this.hoverPokemon[pokemon.name] = true" (mouseout)="this.hoverPokemon[pokemon.name] = false"
+         [ngStyle]="{backgroundColor: hoverPokemon[pokemon.name] ? 'lightgrey' : 'white' }">
+      <div class="card-header-image">
+        <img class="pkmn-image" src="{{'https://img.pokemondb.net/sprites/black-white/anim/normal/' + pokemon.name + '.gif'}}">
+      </div>
+      <div class="card-content">
+        <h5>{{pokemon.name | titlecase}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
