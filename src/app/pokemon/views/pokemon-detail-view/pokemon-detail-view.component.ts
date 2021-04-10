@@ -2,7 +2,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PokemonModel} from '../../models/pokemon-model';
 import {PokemonDataService} from '../../services/pokemon-data/pokemon-data.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -18,7 +18,8 @@ export class PokemonDetailViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private pokemonDataService: PokemonDataService,
-    private activatedRouted: ActivatedRoute
+    private activatedRouted: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnDestroy(): void {
@@ -40,7 +41,10 @@ export class PokemonDetailViewComponent implements OnInit, OnDestroy {
     .subscribe(
       pokemon => {
         this.pokemonModel = pokemon;
-      });
+      },
+        (error) => {
+        this.router.navigate(['/']);
+        });
   }
 
 }

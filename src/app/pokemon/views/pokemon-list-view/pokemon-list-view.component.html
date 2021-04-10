@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col" *ngFor="let pokemon of this.pokemonList">
     <div class="card" routerLink="/pokemon/{{pokemon.name}}" (mouseover)="this.hoverPokemon[pokemon.name] = true" (mouseout)="this.hoverPokemon[pokemon.name] = false"
-         [ngStyle]="{backgroundColor: hoverPokemon[pokemon.name] ? 'lightgrey' : 'white' }">
+         [ngStyle]="{backgroundColor: hoverPokemon[pokemon.name] ? 'lightgrey' : 'white', cursor: hoverPokemon[pokemon.name] ? 'pointer' : 'default'}">
       <div class="card-header-image">
         <img class="pkmn-image" src="{{'https://img.pokemondb.net/sprites/black-white/anim/normal/' + pokemon.name + '.gif'}}">
       </div>
